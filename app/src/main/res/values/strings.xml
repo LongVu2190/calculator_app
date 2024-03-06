@@ -20,4 +20,10 @@
     <string name="ac">AC</string>
     <string name="_dot">.</string>
     <string name="_equal">=</string>
+    <string name="square_root">√</string>
+    <string name="comma">,</string>
+    <string name="pow">^</string>
+    <string name="modulo">%</string>
+    <string name="ln">ln</string>
+    <string name="pi">π</string>
 </resources>
