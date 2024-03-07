@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.google.android.material.button.MaterialButton;
@@ -15,11 +14,7 @@ import org.mozilla.javascript.Scriptable;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView solutionTextView, resultTextView;
-    MaterialButton btnClear, btnOpenInterval, btnCloseInterval, btnAllClear;
-    MaterialButton btn_modulo, btn_pow, btn_log, btn_sqrt, btn_pi;
-    MaterialButton btnDivideOperator, btnMultiplyOperator, btnPlusOperator, btnMinusOperator, btnResult, btnDot,
-            btn_more_functions;
-    MaterialButton btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0;
+
     LinearLayout advanced_functions, last_row;
     private Calculator calculator;
 
@@ -39,41 +34,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         solutionTextView = findViewById(R.id.solution_text);
 
         // set id and event onclick for controller buttons.
-        setId(btnClear, R.id.btn_clear);
-        setId(btnOpenInterval, R.id.btn_open_interval);
-        setId(btnCloseInterval, R.id.btn_close_interval);
-        setId(btnDivideOperator, R.id.btn_divide_operator);
-        setId(btn_7, R.id.btn_7);
-        setId(btn_8, R.id.btn_8);
-        setId(btn_9, R.id.btn_9);
-        setId(btnMultiplyOperator, R.id.btn_multiply_operator);
-        setId(btn_4, R.id.btn_4);
-        setId(btn_5, R.id.btn_5);
-        setId(btn_6, R.id.btn_6);
-        setId(btnPlusOperator, R.id.btn_plus_operator);
-        setId(btn_1, R.id.btn_1);
-        setId(btn_2, R.id.btn_2);
-        setId(btn_3, R.id.btn_3);
-        setId(btnMinusOperator, R.id.btn_minus_operator);
-        setId(btnAllClear, R.id.btn_all_clear);
-        setId(btn_0, R.id.btn_0);
-        setId(btnDot, R.id.btn_dot);
-        setId(btnResult, R.id.btn_result);
-        setId(btn_more_functions, R.id.btn_more_functions);
+        setId(R.id.btn_clear);
+        setId(R.id.btn_open_interval);
+        setId(R.id.btn_close_interval);
+        setId(R.id.btn_divide_operator);
+        setId(R.id.btn_7);
+        setId(R.id.btn_8);
+        setId(R.id.btn_9);
+        setId(R.id.btn_multiply_operator);
+        setId(R.id.btn_4);
+        setId(R.id.btn_5);
+        setId(R.id.btn_6);
+        setId(R.id.btn_plus_operator);
+        setId(R.id.btn_1);
+        setId(R.id.btn_2);
+        setId(R.id.btn_3);
+        setId(R.id.btn_minus_operator);
+        setId(R.id.btn_all_clear);
+        setId(R.id.btn_0);
+        setId(R.id.btn_dot);
+        setId(R.id.btn_result);
+        setId(R.id.btn_more_functions);
 
         // set id and event onclick for advanced functions buttons.
-        setId(btn_modulo, R.id.btn_modulo);
-        setId(btn_pow, R.id.btn_pow);
-        setId(btn_log, R.id.btn_log);
-        setId(btn_sqrt, R.id.btn_sqrt);
-        setId(btn_pi, R.id.btn_pi);
+        setId(R.id.btn_modulo);
+        setId(R.id.btn_pow);
+        setId(R.id.btn_log);
+        setId(R.id.btn_sqrt);
+        setId(R.id.btn_pi);
     }
 
-    private void setId(MaterialButton button, int id) {
-        button = findViewById(id);
+    private void setId(int id) {
+        MaterialButton button = findViewById(id);
         button.setOnClickListener(this);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View v) {
         MaterialButton button = (MaterialButton) v;
@@ -108,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 solutionTextView.setText("");
                 return;
             case "C":
-                if (prevText.equals(""))
+                if (prevText.isEmpty())
                     return;
 
                 prevText = prevText.substring(0, prevText.length() - 1);
