@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setId(R.id.btn_log);
         setId(R.id.btn_sqrt);
         setId(R.id.btn_pi);
-
         setId(R.id.btn_e);
         setId(R.id.btn_abs);
         setId(R.id.btn_sin);
@@ -70,9 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         calculator = new Calculator();
-
         this.initView();
     }
 
@@ -124,7 +121,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case "/":
                 if (prevResult.equals("0"))
                     break;
-
                 solutionTextView.setText(prevResult + buttonText);
                 return;
             case "√":
@@ -145,9 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case "tan":
                 solutionTextView.setText(prevText + "tan(");
                 return;
-
         }
-
         if (v.getId() == R.id.btn_rotate) {
             int currentOrientation = getResources().getConfiguration().orientation;
             if (currentOrientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -157,7 +151,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             return;
         }
-
         solutionTextView.setText(prevText + buttonText);
     }
 
@@ -167,39 +160,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 data = data.replace("^", ", ");
                 data = "Math.pow(" + data + ")";
             }
-
             if (data.contains("ln")) {
                 data = data.replace("ln", "Math.log");
             }
-
             if (data.contains("√")) {
                 data = data.replace("√", "Math.sqrt");
             }
-
             if (data.contains("π")) {
                 data = data.replace("π", "Math.PI");
             }
-
             if (data.contains("e")) {
                 data = data.replace("e", "2.71828");
             }
-
             if (data.contains("abs")) {
                 data = data.replace("abs", "Math.abs");
             }
-
             if (data.contains("sin")) {
                 data = data.replace("sin", "Math.sin");
             }
-
             if (data.contains("cos")) {
                 data = data.replace("cos", "Math.cos");
             }
-
             if (data.contains("tan")) {
                 data = data.replace("tan", "Math.tan");
             }
-
             Context context = Context.enter();
             context.setOptimizationLevel(-1);
             Scriptable scriptable = context.initStandardObjects();
