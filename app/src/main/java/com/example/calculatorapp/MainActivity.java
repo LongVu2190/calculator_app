@@ -19,13 +19,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView solutionTextView, resultTextView;
     private Calculator calculator;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    private void setId(int id) {
+        MaterialButton button = findViewById(id);
+        button.setOnClickListener(this);
+    }
 
-        calculator = new Calculator();
-
+    private void initView() {
         resultTextView = findViewById(R.id.result_text);
         solutionTextView = findViewById(R.id.solution_text);
 
@@ -67,10 +66,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setId(R.id.btn_rotate);
     }
 
-    private void setId(int id) {
-        MaterialButton button = findViewById(id);
-        button.setOnClickListener(this);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        calculator = new Calculator();
+
+        this.initView();
     }
+
+
 
     @SuppressLint("SetTextI18n")
     @Override

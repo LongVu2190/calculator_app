@@ -213,7 +213,7 @@
                     android:layout_width="72dp"
                     android:layout_height="72dp"
                     android:layout_margin="12dp"
-                    android:backgroundTint="@color/operator_button_color"
+                    android:backgroundTint="#353535"
                     android:text="@string/_c"
                     android:textColor="@color/white"
                     android:textSize="30sp"
@@ -434,7 +434,7 @@
                     app:cornerRadius="100dp"
                     android:layout_margin="12dp"
                     android:id="@+id/btn_all_clear"
-                    android:backgroundTint="@color/operator_button_color" />
+                    android:backgroundTint="#353535" />
 
             <com.google.android.material.button.MaterialButton
                     style="@style/Widget.Material3.ExtendedFloatingActionButton.Icon.Primary"
