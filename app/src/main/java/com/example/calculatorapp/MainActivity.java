@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
     @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View v) {
@@ -169,35 +168,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 data = "Math.pow(" + data + ")";
             }
 
-            else if (data.contains("ln")) {
+            if (data.contains("ln")) {
                 data = data.replace("ln", "Math.log");
             }
 
-            else if (data.contains("√")) {
+            if (data.contains("√")) {
                 data = data.replace("√", "Math.sqrt");
             }
 
-            else if (data.contains("π")) {
+            if (data.contains("π")) {
                 data = data.replace("π", "Math.PI");
             }
 
-            else if (data.contains("e")) {
+            if (data.contains("e")) {
                 data = data.replace("e", "2.71828");
             }
 
-            else if (data.contains("abs")) {
+            if (data.contains("abs")) {
                 data = data.replace("abs", "Math.abs");
             }
 
-            else if (data.contains("sin")) {
+            if (data.contains("sin")) {
                 data = data.replace("sin", "Math.sin");
             }
 
-            else if (data.contains("cos")) {
+            if (data.contains("cos")) {
                 data = data.replace("cos", "Math.cos");
             }
 
-            else if (data.contains("tan")) {
+            if (data.contains("tan")) {
                 data = data.replace("tan", "Math.tan");
             }
 
@@ -221,13 +220,10 @@ class Calculator {
     public Calculator() {
         this.currentResult = 0;
     }
-
     private float currentResult;
-
     public float getCurrentResult() {
         return currentResult;
     }
-
     public void setCurrentResult(float currentResult) {
         this.currentResult = currentResult;
     }

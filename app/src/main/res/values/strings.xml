@@ -31,4 +31,5 @@
     <string name="cos">cos</string>
     <string name="tan">tan</string>
     <string name="e">e</string>
+    <string name="rotate">rotate</string>
 </resources>
