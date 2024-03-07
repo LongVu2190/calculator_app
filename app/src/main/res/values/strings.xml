@@ -26,4 +26,9 @@
     <string name="modulo">%</string>
     <string name="ln">ln</string>
     <string name="pi">π</string>
+    <string name="abs">abs</string>
+    <string name="sin">sin</string>
+    <string name="cos">cos</string>
+    <string name="tan">tan</string>
+    <string name="e">e</string>
 </resources>

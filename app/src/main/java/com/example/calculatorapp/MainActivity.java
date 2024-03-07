@@ -3,19 +3,20 @@ package com.example.calculatorapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.google.android.material.button.MaterialButton;
+
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Scriptable;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView solutionTextView, resultTextView;
-
-    LinearLayout advanced_functions, last_row;
     private Calculator calculator;
 
     @Override
@@ -24,11 +25,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         calculator = new Calculator();
-
-        advanced_functions = findViewById(R.id.advanced_functions);
-        advanced_functions.setVisibility(View.GONE);
-
-        last_row = findViewById(R.id.last_row);
 
         resultTextView = findViewById(R.id.result_text);
         solutionTextView = findViewById(R.id.solution_text);
@@ -54,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setId(R.id.btn_0);
         setId(R.id.btn_dot);
         setId(R.id.btn_result);
-        setId(R.id.btn_more_functions);
 
         // set id and event onclick for advanced functions buttons.
         setId(R.id.btn_modulo);
@@ -62,6 +57,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setId(R.id.btn_log);
         setId(R.id.btn_sqrt);
         setId(R.id.btn_pi);
+
+        setId(R.id.btn_e);
+        setId(R.id.btn_abs);
+        setId(R.id.btn_sin);
+        setId(R.id.btn_cos);
+        setId(R.id.btn_tan);
+
+        setId(R.id.btn_rotate);
     }
 
     private void setId(int id) {
@@ -119,15 +122,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 solutionTextView.setText(prevResult + buttonText);
                 return;
+            case "√":
+                solutionTextView.setText(prevText + "√(");
+                return;
+            case "ln":
+                solutionTextView.setText(prevText + "ln(");
+                return;
+            case "abs":
+                solutionTextView.setText(prevText + "abs(");
+                return;
+            case "sin":
+                solutionTextView.setText(prevText + "sin(");
+                return;
+            case "cos":
+                solutionTextView.setText(prevText + "cos(");
+                return;
+            case "tan":
+                solutionTextView.setText(prevText + "tan(");
+                return;
+
         }
 
-        if (v.getId() == R.id.btn_more_functions) {
-            if (advanced_functions.getVisibility() == View.GONE) {
-                advanced_functions.setVisibility(View.VISIBLE);
-                last_row.setVisibility(View.GONE);
+        if (v.getId() == R.id.btn_rotate) {
+            int currentOrientation = getResources().getConfiguration().orientation;
+            if (currentOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
             } else {
-                advanced_functions.setVisibility(View.GONE);
-                last_row.setVisibility(View.VISIBLE);
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             }
             return;
         }
@@ -137,22 +158,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private String getResult(String data) {
         try {
-            // Replace "^" with ", " and wrap with "Math.pow()"
             if (data.contains("^")) {
                 data = data.replace("^", ", ");
                 data = "Math.pow(" + data + ")";
             }
 
-            if (data.contains("ln")) {
+            else if (data.contains("ln")) {
                 data = data.replace("ln", "Math.log");
             }
 
-            if (data.contains("√")) {
+            else if (data.contains("√")) {
                 data = data.replace("√", "Math.sqrt");
             }
 
-            if (data.contains("π")) {
+            else if (data.contains("π")) {
                 data = data.replace("π", "Math.PI");
+            }
+
+            else if (data.contains("e")) {
+                data = data.replace("e", "2.71828");
+            }
+
+            else if (data.contains("abs")) {
+                data = data.replace("abs", "Math.abs");
+            }
+
+            else if (data.contains("sin")) {
+                data = data.replace("sin", "Math.sin");
+            }
+
+            else if (data.contains("cos")) {
+                data = data.replace("cos", "Math.cos");
+            }
+
+            else if (data.contains("tan")) {
+                data = data.replace("tan", "Math.tan");
             }
 
             Context context = Context.enter();
